@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Data;
 
 namespace Presentation.View
 {
@@ -21,18 +22,21 @@ namespace Presentation.View
             return input;
         }
 
-        public void ShowResult(int socio, List<Consumption> consumption, double debt)
+        public void ShowResult(int member, List<Consumption> consumption, double debt)
         {            
+            MemberRepository repository = new MemberRepository();
+            string name = repository.GetMember(member).FirstName + " " + repository.GetMember(member).SecondName;
             int cubes = 0;
+
             foreach (Consumption item in consumption)
             {
-                if(item.MemberID == socio)
+                if(item.MemberID == member)
                 {
                     cubes = item.Value;
                 }
             }
             
-            Console.WriteLine("El consumo del socio {0} es de {1} cubos. La deuda actual es de {2} Bs", socio, cubes, debt);
+            Console.WriteLine("El consumo del socio {0}, correspondiente a {1} es de {2} cubos. La deuda total es de {3} Bs.", member, name, cubes, debt);
             Console.WriteLine("======================================");
         }
     }
