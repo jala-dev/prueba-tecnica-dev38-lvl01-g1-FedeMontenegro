@@ -20,8 +20,7 @@ namespace BusinessLogic.Commands
             List<Consumption> memberConsumptions = new ConsumptionRepository().GetConsumptionByMember(entity);
 
             double total = this.CalculateTotalReceivable(memberConsumptions);
-
-            view.ShowResult(total);            
+            view.ShowResult(entity.ID, memberConsumptions, total);            
         }
 
         private double CalculateTotalReceivable(List<Consumption> memberConsumptions)

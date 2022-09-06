@@ -21,9 +21,18 @@ namespace Presentation.View
             return input;
         }
 
-        public void ShowResult(double total)
+        public void ShowResult(int socio, List<Consumption> consumption, double debt)
         {            
-            Console.WriteLine("R. La deuda total del socio es: {0}",total);
+            int cubes = 0;
+            foreach (Consumption item in consumption)
+            {
+                if(item.MemberID == socio)
+                {
+                    cubes = item.Value;
+                }
+            }
+            
+            Console.WriteLine("El consumo del socio {0} es de {1} cubos. La deuda actual es de {2} Bs", socio, cubes, debt);
             Console.WriteLine("======================================");
         }
     }
